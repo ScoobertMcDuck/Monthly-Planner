@@ -40,23 +40,24 @@ struct PlannerTypeView: View {
                     } label: {
                         Text("Daily Planner") }
                 }
+                Button {
+                    try! Auth.auth().signOut()
+                    userIsLoggedIn.toggle()
+                    
+                } label: {
+                    Text("Sign Out")
+                        .bold()
+                        .frame(width: 200, height: 40)
+                        .foregroundColor(.white)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .fill(.linearGradient(colors: [.red, .red],
+                                                      startPoint: .topLeading, endPoint: .bottomTrailing))
+                        )
+                }
+                .padding(.top)
             }
-            Button {
-                try! Auth.auth().signOut()
-                userIsLoggedIn.toggle()
-                
-            } label: {
-                Text("Sign Out")
-                    .bold()
-                    .frame(width: 200, height: 40)
-                    .foregroundColor(.white)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(.linearGradient(colors: [.red, .red],
-                                                  startPoint: .topLeading, endPoint: .bottomTrailing))
-                    )
-            }
-            .padding(.top)
+            
         }
     }
         
