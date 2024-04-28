@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 
 struct DailyMainView: View {
-    
+   
     @ObservedObject var model = documentRetrieval()
     @ObservedObject var quoteModel = QuoteViewModel()
     @ObservedObject var collectionsModel = CollectionsViewModel()
@@ -18,7 +18,7 @@ struct DailyMainView: View {
     @State private var time = ""
     @State private var strike = false
     @State private var taskAlert = false
-    
+   
     
     var body: some View {
         
@@ -151,7 +151,6 @@ struct DailyMainView: View {
         model.getList()
         model.getTasks()
         quoteModel.fetchData()
-        
     }
     
     // Add notes

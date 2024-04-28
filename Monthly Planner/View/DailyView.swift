@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DailyView: View {
     
+    @State var update = false
     
     var body: some View {
        
