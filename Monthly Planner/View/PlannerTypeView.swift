@@ -23,10 +23,24 @@ struct PlannerTypeView: View {
     }
     
     var content: some View {
-        
         VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            
+        
+            NavigationStack {
+                List {
+                    NavigationLink {
+                        MonthlyView()
+                    } label: {
+                        Text("Monthly Planner") }
+                    NavigationLink {
+                        WeeklyView()
+                    } label: {
+                        Text("Weekly Planner") }
+                    NavigationLink {
+                        DailyView()
+                    } label: {
+                        Text("Daily Planner") }
+                }
+            }
             Button {
                 try! Auth.auth().signOut()
                 userIsLoggedIn.toggle()
@@ -44,7 +58,6 @@ struct PlannerTypeView: View {
             }
             .padding(.top)
         }
-        
     }
         
 }
