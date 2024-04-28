@@ -9,16 +9,19 @@ import SwiftUI
 import Firebase
 
 struct DailyMainView: View {
-    
+   
     @ObservedObject var model = documentRetrieval()
     @ObservedObject var quoteModel = QuoteViewModel()
+    @ObservedObject var collectionsModel = CollectionsViewModel()
     @State private var tdlAlert = false
     @State private var text = ""
     @State private var time = ""
     @State private var strike = false
     @State private var taskAlert = false
+   
     
     var body: some View {
+        
         GeometryReader { geometry in
             // Main Container
             HStack {
@@ -92,7 +95,7 @@ struct DailyMainView: View {
                             .frame(height: geometry.size.height * 0.10)
                             .foregroundColor(.white)
                         Text("\"" + quoteModel.Quote + "\"")
-                            .font(.custom("ArialRoundedMTBold", fixedSize: 15))
+                            .font(.custom("ArialRoundedMTBold", fixedSize: 12))
                             .frame(maxWidth: geometry.size.width * 0.40, alignment: .center)
                             .frame(height: geometry.size.height * 0.30, alignment: .topLeading)
                             .foregroundColor(.white)
@@ -148,7 +151,6 @@ struct DailyMainView: View {
         model.getList()
         model.getTasks()
         quoteModel.fetchData()
-        
     }
     
     // Add notes
@@ -156,7 +158,7 @@ struct DailyMainView: View {
         
         // Reference document
         let db = Firestore.firestore()
-        let docRef = db.collection("TestCase").document("DailyTDL")
+        let docRef = db.collection(collectionsModel.getID()).document("DailyTDL")
         
         // Get old list
         var newList = model.dailyList.list
@@ -167,6 +169,8 @@ struct DailyMainView: View {
         // Turn off Alert
         tdlAlert.toggle()
         text = ""
+        model.getList()
+      
     }
     
     // Add notes
@@ -174,7 +178,7 @@ struct DailyMainView: View {
         
         // Reference document
         let db = Firestore.firestore()
-        let docRef = db.collection("TestCase").document("meetings")
+        let docRef = db.collection(collectionsModel.getID()).document("Tasks")
         
         // Add task
         let timeCon = convertTime(time)
@@ -182,6 +186,9 @@ struct DailyMainView: View {
         
         // Turn off Alert
         taskAlert.toggle()
+        text = ""
+        time = ""
+        model.getTasks()
     }
     
     func convertTime(_ timeIn: String) -> String {

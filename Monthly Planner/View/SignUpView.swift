@@ -12,6 +12,7 @@ struct SignUpView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var userIsLoggedIn = false
+    @ObservedObject var collectionsModel = CollectionsViewModel()
     
     var body: some View {
         if userIsLoggedIn {
@@ -107,6 +108,7 @@ struct SignUpView: View {
             if error != nil {
                 print(error!.localizedDescription)
             }
+            collectionsModel.createDocs()
         }
     }
     

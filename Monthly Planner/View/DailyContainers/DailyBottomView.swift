@@ -11,6 +11,7 @@ import Firebase
 struct DailyBottomView: View {
     
     @ObservedObject var model = documentRetrieval()
+    @ObservedObject var collectionsModel = CollectionsViewModel()
     @State private var showingAlert = false
     @State private var text = ""
     
@@ -55,12 +56,13 @@ struct DailyBottomView: View {
         
         // Update notes
         let db = Firestore.firestore()
-        let docRef = db.collection("TestCase").document("Notes")
+        let docRef = db.collection(collectionsModel.getID()).document("Notes")
         docRef.setData(["notes": text], merge: true)
         
         // Turn off Alert
         showingAlert.toggle()
         text = ""
+        model.getNotes()
     }
 }
 

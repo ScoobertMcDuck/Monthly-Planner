@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct DailyTopView: View {
+    
+    
     var body: some View {
         
         GeometryReader { geometry in
@@ -23,14 +26,11 @@ struct DailyTopView: View {
                     Text("Date:")
                         .font(.custom("ArialRoundedMTBold", fixedSize: 25))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .frame(maxHeight: geometry.size.height * 0.10)
+                        
                     Text(getDate())
                         .font(.custom("ArialRoundedMTBold", fixedSize: 20))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .frame(maxHeight: geometry.size.height * 0.40)
-                        .background(Color(.blue))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                        
                 }.frame(maxWidth: .infinity)
             }
         }
@@ -44,6 +44,9 @@ struct DailyTopView: View {
         let dateString = df.string(from: date)
         return dateString
     }
+    
+
+    
 }
 
 #Preview {
