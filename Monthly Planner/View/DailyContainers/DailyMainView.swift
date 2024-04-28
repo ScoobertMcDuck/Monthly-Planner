@@ -95,7 +95,7 @@ struct DailyMainView: View {
                             .frame(height: geometry.size.height * 0.10)
                             .foregroundColor(.white)
                         Text("\"" + quoteModel.Quote + "\"")
-                            .font(.custom("ArialRoundedMTBold", fixedSize: 15))
+                            .font(.custom("ArialRoundedMTBold", fixedSize: 12))
                             .frame(maxWidth: geometry.size.width * 0.40, alignment: .center)
                             .frame(height: geometry.size.height * 0.30, alignment: .topLeading)
                             .foregroundColor(.white)
@@ -169,6 +169,7 @@ struct DailyMainView: View {
         // Turn off Alert
         tdlAlert.toggle()
         text = ""
+        model.getList()
       
     }
     
@@ -187,6 +188,7 @@ struct DailyMainView: View {
         taskAlert.toggle()
         text = ""
         time = ""
+        model.getTasks()
     }
     
     func convertTime(_ timeIn: String) -> String {

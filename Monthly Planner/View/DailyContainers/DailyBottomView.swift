@@ -62,6 +62,7 @@ struct DailyBottomView: View {
         // Turn off Alert
         showingAlert.toggle()
         text = ""
+        model.getNotes()
     }
 }
 

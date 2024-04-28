@@ -13,6 +13,7 @@ class QuoteViewModel : ObservableObject {
     private let url = "https://api.api-ninjas.com/v1/quotes?category=happiness"
    
     func fetchData() {
+        
         DispatchQueue.main.async {
             if let url = URL(string: self.url) {
                 var request = URLRequest(url: url)
