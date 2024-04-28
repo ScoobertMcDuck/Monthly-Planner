@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct DailyView: View {
+    
+    
     var body: some View {
+       
         
         GeometryReader { geometry in
             // Main Container

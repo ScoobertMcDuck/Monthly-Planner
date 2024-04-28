@@ -28,14 +28,6 @@ struct PlannerTypeView: View {
             NavigationStack {
                 List {
                     NavigationLink {
-                        MonthlyView()
-                    } label: {
-                        Text("Monthly Planner") }
-                    NavigationLink {
-                        WeeklyView()
-                    } label: {
-                        Text("Weekly Planner") }
-                    NavigationLink {
                         DailyView()
                     } label: {
                         Text("Daily Planner") }

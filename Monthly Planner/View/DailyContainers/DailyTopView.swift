@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct DailyTopView: View {
+    
+    
     var body: some View {
         
         GeometryReader { geometry in
@@ -41,6 +44,9 @@ struct DailyTopView: View {
         let dateString = df.string(from: date)
         return dateString
     }
+    
+
+    
 }
 
 #Preview {

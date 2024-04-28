@@ -12,13 +12,16 @@ struct DailyMainView: View {
     
     @ObservedObject var model = documentRetrieval()
     @ObservedObject var quoteModel = QuoteViewModel()
+    @ObservedObject var collectionsModel = CollectionsViewModel()
     @State private var tdlAlert = false
     @State private var text = ""
     @State private var time = ""
     @State private var strike = false
     @State private var taskAlert = false
     
+    
     var body: some View {
+        
         GeometryReader { geometry in
             // Main Container
             HStack {
@@ -156,7 +159,7 @@ struct DailyMainView: View {
         
         // Reference document
         let db = Firestore.firestore()
-        let docRef = db.collection("TestCase").document("DailyTDL")
+        let docRef = db.collection(collectionsModel.getID()).document("DailyTDL")
         
         // Get old list
         var newList = model.dailyList.list
@@ -167,6 +170,7 @@ struct DailyMainView: View {
         // Turn off Alert
         tdlAlert.toggle()
         text = ""
+      
     }
     
     // Add notes
@@ -174,7 +178,7 @@ struct DailyMainView: View {
         
         // Reference document
         let db = Firestore.firestore()
-        let docRef = db.collection("TestCase").document("meetings")
+        let docRef = db.collection(collectionsModel.getID()).document("Tasks")
         
         // Add task
         let timeCon = convertTime(time)
@@ -182,6 +186,8 @@ struct DailyMainView: View {
         
         // Turn off Alert
         taskAlert.toggle()
+        text = ""
+        time = ""
     }
     
     func convertTime(_ timeIn: String) -> String {

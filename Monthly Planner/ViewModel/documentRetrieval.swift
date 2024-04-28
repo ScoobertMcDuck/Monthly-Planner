@@ -8,8 +8,11 @@
 import Foundation
 import Firebase
 
+
+
 class documentRetrieval: ObservableObject {
     
+    var collectionsModel = CollectionsViewModel()
     @Published var notesArray = NotesModel(id: "", notes: "")
     @Published var dailyList = ListModel(id: "", list: [String]())
     @Published var taskList = MeetingsModel(id: "",
@@ -28,7 +31,7 @@ class documentRetrieval: ObservableObject {
         
         // Database reference
         let db = Firestore.firestore()
-        let docRef = db.collection("TestCase").document("Notes")
+        let docRef = db.collection(collectionsModel.getID()).document("Notes")
         
         // Get Data
         DispatchQueue.main.async {
@@ -57,7 +60,7 @@ class documentRetrieval: ObservableObject {
         
         // Database reference
         let db = Firestore.firestore()
-        let docRef = db.collection("TestCase").document("DailyTDL")
+        let docRef = db.collection(collectionsModel.getID()).document("DailyTDL")
         
         // Get Data
         DispatchQueue.main.async {
@@ -86,7 +89,7 @@ class documentRetrieval: ObservableObject {
         
         // Database reference
         let db = Firestore.firestore()
-        let docRef = db.collection("TestCase").document("meetings")
+        let docRef = db.collection(collectionsModel.getID()).document("Tasks")
         
         // Get Data
         DispatchQueue.main.async {
